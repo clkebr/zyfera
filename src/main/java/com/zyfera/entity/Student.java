@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "students")
 public class Student extends  BaseEntity {
@@ -21,12 +21,12 @@ public class Student extends  BaseEntity {
 	private String name;
 
 	@Column(nullable = false)
-	private String surName;
+	private String surname;
 
 	@Column(unique = true, nullable = false)
 	private String stdNumber;
 
-	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@ToString.Exclude
 	private List<Grade> grades;
 
