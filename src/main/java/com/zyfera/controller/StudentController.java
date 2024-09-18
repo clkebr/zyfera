@@ -26,10 +26,10 @@ public class StudentController {
 		StudentDto saved = studentService.save(studentDto);
 		return ResponseEntity.ok(new ResponseWrapper("student is successfully created", saved, HttpStatus.CREATED));
 	}
-	@PutMapping("/update")
-	public ResponseEntity<ResponseWrapper> updateStudent(@Valid @RequestBody StudentDto studentDto){
+	@PutMapping("/{stdNumber}")
+	public ResponseEntity<ResponseWrapper> updateStudent(@Valid @RequestBody StudentDto studentDto,@PathVariable String stdNumber){
 
-		StudentDto saved = studentService.update(studentDto);
+		StudentDto saved = studentService.update(studentDto, stdNumber);
 		return ResponseEntity.ok(new ResponseWrapper("student is successfully updated", saved, HttpStatus.OK));
 	}
 }
