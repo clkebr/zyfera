@@ -58,6 +58,9 @@ public class StudentServiceImpl implements StudentService {
 
 	}
 
+	//todo: ask which fields are allowed to be updated. now i updated all
+	//todo: what are the requirements, if a value with existing grade-code is updating. now i set average
+	//todo: ask based on which object should we check whether the student is exist if student number is not required in payload
 	@Override
 	public StudentDto update(StudentDto studentDto) {
 
