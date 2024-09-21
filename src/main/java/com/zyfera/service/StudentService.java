@@ -1,9 +1,10 @@
 package com.zyfera.service;
 
-import com.zyfera.dto.StudentDto;
+import com.zyfera.dto.incomming.StudentCreateDto;
+import com.zyfera.dto.outgoing.StudentDto;
 
 public interface StudentService {
-	StudentDto save(StudentDto studentDto);
+  StudentDto save(StudentCreateDto studentCreateDto);
 
-	StudentDto update(StudentDto studentDto, String stdNumber);
+  StudentDto update(StudentCreateDto studentCreateDto, String stdNumber);
 }
