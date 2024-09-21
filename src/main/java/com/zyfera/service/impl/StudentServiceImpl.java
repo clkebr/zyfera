@@ -9,7 +9,10 @@ import com.zyfera.repository.StudentRepository;
 import com.zyfera.service.StudentService;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,7 +29,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public StudentDto save(StudentDto studentDto) {
 		//check if user already exist
-		if (studentRepository.findByStdNumber(studentDto.getStdNumber()).isEmpty()){
+		if (studentRepository.findByStdNumber(studentDto.getStdNumber()).isEmpty()) {
 			Student studentToBeSaved = mapperUtil.convertToType(studentDto, new Student());
 
 			// to check duplicate grade-code create a map to store grade value
@@ -34,11 +37,11 @@ public class StudentServiceImpl implements StudentService {
 
 			// if map does not contain grade-code store code and value if contains update value as average
 			for (Grade grade : studentToBeSaved.getGrades()) {
-				if(!gradeMap.containsKey(grade.getCode())){
-					gradeMap.put(grade.getCode(),grade.getValue());
-				}else{
+				if (!gradeMap.containsKey(grade.getCode())) {
+					gradeMap.put(grade.getCode(), grade.getValue());
+				} else {
 					Integer existingValue = gradeMap.get(grade.getCode());
-					Integer averageValue = (existingValue + grade.getValue()) / 2 ;
+					Integer averageValue = (existingValue + grade.getValue()) / 2;
 					gradeMap.put(grade.getCode(), averageValue);
 				}
 			}
@@ -51,9 +54,9 @@ public class StudentServiceImpl implements StudentService {
 			studentToBeSaved.setGrades(grades);
 
 			Student saved = studentRepository.save(studentToBeSaved);
-			return mapperUtil.convertToType(saved,new StudentDto());
-		}else{ // trow custom runtime exception to inform user
-			throw new StudentNotFoundException("Student with number"+ studentDto.getStdNumber()+ " already exist!");
+			return mapperUtil.convertToType(saved, new StudentDto());
+		} else { // trow custom runtime exception to inform user
+			throw new StudentNotFoundException("Student with number" + studentDto.getStdNumber() + " already exist!");
 		}
 
 	}
@@ -81,12 +84,12 @@ public class StudentServiceImpl implements StudentService {
 			for (Grade grade : studentToBeSaved.getGrades()) {
 
 				// if the ref map(existingGradesMap) contains the grade-code save average as value
-				if ( existingGradesMap.containsKey(grade.getCode())){
+				if (existingGradesMap.containsKey(grade.getCode())) {
 					Integer existingValue = existingGradesMap.get(grade.getCode());
-					Integer averageValue = (existingValue + grade.getValue()) / 2 ;
+					Integer averageValue = (existingValue + grade.getValue()) / 2;
 
 					existingGradesMap.put(grade.getCode(), averageValue);
-				}else {
+				} else {
 					// if not contains save as it is
 					existingGradesMap.put(grade.getCode(), grade.getValue());
 				}
@@ -103,9 +106,9 @@ public class StudentServiceImpl implements StudentService {
 			studentToBeSaved.setId(student.get().getId());
 
 			Student saved = studentRepository.save(studentToBeSaved);
-			return mapperUtil.convertToType(saved,new StudentDto());
-		}else{
-			throw new StudentNotFoundException("Student with number"+ studentDto.getStdNumber()+ " not found!");
+			return mapperUtil.convertToType(saved, new StudentDto());
+		} else {
+			throw new StudentNotFoundException("Student with number" + studentDto.getStdNumber() + " not found!");
 		}
 	}
 }

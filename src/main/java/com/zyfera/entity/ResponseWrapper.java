@@ -12,18 +12,17 @@ import org.springframework.http.HttpStatus;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseWrapper {
 
-    private boolean success;
-    private String message;
-    private Integer code;
-    private Object data;
+	private boolean success;
+	private String message;
+	private Integer code;
+	private Object data;
 
-    public ResponseWrapper(String message, Object data, HttpStatus httpStatus) {
-        this.success = true;
-        this.message = message;
-        this.code = httpStatus.value();
-        this.data = data;
-    }
-
+	public ResponseWrapper(String message, Object data, HttpStatus httpStatus) {
+		this.success = true;
+		this.message = message;
+		this.code = httpStatus.value();
+		this.data = data;
+	}
 
 
 }

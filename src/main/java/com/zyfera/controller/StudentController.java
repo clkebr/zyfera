@@ -21,13 +21,14 @@ public class StudentController {
 
 	// used responseWrapper to use same output structure for all endpoints
 	@PostMapping("/create")
-	public ResponseEntity<ResponseWrapper> createStudent(@Valid @RequestBody StudentDto studentDto){
+	public ResponseEntity<ResponseWrapper> createStudent(@Valid @RequestBody StudentDto studentDto) {
 
 		StudentDto saved = studentService.save(studentDto);
 		return ResponseEntity.ok(new ResponseWrapper("student is successfully created", saved, HttpStatus.CREATED));
 	}
+
 	@PutMapping("/{stdNumber}")
-	public ResponseEntity<ResponseWrapper> updateStudent(@Valid @RequestBody StudentDto studentDto,@PathVariable String stdNumber){
+	public ResponseEntity<ResponseWrapper> updateStudent(@Valid @RequestBody StudentDto studentDto, @PathVariable String stdNumber) {
 
 		StudentDto saved = studentService.update(studentDto, stdNumber);
 		return ResponseEntity.ok(new ResponseWrapper("student is successfully updated", saved, HttpStatus.OK));

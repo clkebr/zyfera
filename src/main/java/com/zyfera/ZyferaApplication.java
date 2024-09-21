@@ -13,7 +13,7 @@ public class ZyferaApplication {
 	}
 
 	@Bean
-	public ModelMapper modelMapper(){
+	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
 
