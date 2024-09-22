@@ -3,6 +3,9 @@ package com.zyfera.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -13,6 +16,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
 
 	@Id
@@ -20,10 +24,12 @@ public class BaseEntity {
 	private Long id;
 
 	@Column(nullable = false, updatable = false)
+	@CreatedDate
 	private LocalDateTime insertDateTime;
 	@Column(nullable = false, updatable = false)
 	private Long insertUserId;
 	@Column(nullable = false)
+	@LastModifiedDate
 	private LocalDateTime lastUpdateDateTime;
 	@Column(nullable = false)
 	private Long lastUpdateUserId;
@@ -32,15 +38,12 @@ public class BaseEntity {
 
 	@PrePersist
 	public void onPrePersist() {
-		this.insertDateTime = LocalDateTime.now();
-		this.lastUpdateDateTime = LocalDateTime.now();
 		this.insertUserId = 1L;
 		this.lastUpdateUserId = 1L;
 	}
 
 	@PreUpdate
 	public void onPreUpdate() {
-		this.lastUpdateDateTime = LocalDateTime.now();
 		this.lastUpdateUserId = 1L;
 	}
 
