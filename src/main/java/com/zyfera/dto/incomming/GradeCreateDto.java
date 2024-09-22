@@ -1,4 +1,4 @@
-package com.zyfera.dto;
+package com.zyfera.dto.incomming;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -8,12 +8,9 @@ import lombok.*;
 @Setter
 @Builder
 @AllArgsConstructor
-public class GradeDto {
+public class GradeCreateDto {
 
-	@NotBlank
-	private String code;
+  @NotBlank private String code;
 
-	@NotBlank
-	private Integer value;
-
+  @NotBlank private Integer value;
 }

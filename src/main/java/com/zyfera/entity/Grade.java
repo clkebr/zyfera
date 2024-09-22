@@ -14,11 +14,12 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "grades")
-public class Grade extends BaseEntity{
+public class Grade extends BaseEntity {
 
 	private String code;
 
-	@Min(0) @Max(100)
+	@Min(0)
+	@Max(100)
 	private Integer value;
 
 

@@ -2,8 +2,8 @@ package com.zyfera.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List;
 
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -13,8 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "students")
-public class Student extends  BaseEntity {
-
+public class Student extends BaseEntity {
 
 
 	@Column(nullable = false)
