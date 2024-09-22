@@ -1,6 +1,6 @@
 package com.zyfera.service;
 
-import com.zyfera.dto.incomming.StudentCreateDto;
+import com.zyfera.dto.incoming.StudentCreateDto;
 import com.zyfera.dto.outgoing.StudentDto;
 
 public interface StudentService {

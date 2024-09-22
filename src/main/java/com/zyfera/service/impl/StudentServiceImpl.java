@@ -1,6 +1,6 @@
 package com.zyfera.service.impl;
 
-import com.zyfera.dto.incomming.StudentCreateDto;
+import com.zyfera.dto.incoming.StudentCreateDto;
 import com.zyfera.dto.outgoing.StudentDto;
 import com.zyfera.entity.Grade;
 import com.zyfera.entity.Student;

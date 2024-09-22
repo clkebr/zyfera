@@ -1,6 +1,5 @@
-package com.zyfera.dto.incomming;
+package com.zyfera.dto.incoming;
 
-import com.zyfera.dto.outgoing.GradeDto;
 import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 import lombok.*;
@@ -18,5 +17,5 @@ public class StudentCreateDto {
 
   @NotBlank private String stdNumber;
 
-  private List<GradeDto> grades;
+  private List<GradeCreateDto> grades;
 }
