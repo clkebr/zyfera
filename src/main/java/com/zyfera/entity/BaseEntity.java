@@ -1,14 +1,13 @@
 package com.zyfera.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Objects;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.time.LocalDateTime;
-import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,6 +27,7 @@ public class BaseEntity {
 	private LocalDateTime insertDateTime;
 	@Column(nullable = false, updatable = false)
 	private Long insertUserId;
+
 	@Column(nullable = false)
 	@LastModifiedDate
 	private LocalDateTime lastUpdateDateTime;

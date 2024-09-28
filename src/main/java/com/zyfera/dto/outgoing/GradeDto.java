@@ -10,5 +10,6 @@ import lombok.*;
 public class GradeDto {
 
   private String code;
+
   private Integer value;
 }

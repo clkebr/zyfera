@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-
   @ExceptionHandler(StudentNotFoundException.class)
   public ResponseEntity<ResponseWrapper> serviceException(StudentNotFoundException se) {
     String message = se.getMessage();

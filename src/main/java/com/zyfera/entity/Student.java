@@ -15,7 +15,6 @@ import java.util.List;
 @Table(name = "students")
 public class Student extends BaseEntity {
 
-
 	@Column(nullable = false)
 	private String name;
 

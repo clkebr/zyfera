@@ -63,8 +63,7 @@ public class StudentServiceImpl implements StudentService {
   }
 
   // todo: ask which fields are allowed to be updated. now i updated all
-  // todo: what are the requirements, if a value with existing grade-code is updating. now i set
-  // average
+  // todo: what are the requirements, if a value with existing grade-code is updating. now i set average
   @Override
   public StudentDto update(StudentCreateDto studentCreateDto, String stdNumber) {
 
