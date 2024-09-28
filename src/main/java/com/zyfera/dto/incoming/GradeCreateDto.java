@@ -1,4 +1,4 @@
-package com.zyfera.dto.incomming;
+package com.zyfera.dto.incoming;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
