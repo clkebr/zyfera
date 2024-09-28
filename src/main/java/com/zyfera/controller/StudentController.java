@@ -5,6 +5,7 @@ import com.zyfera.dto.outgoing.StudentDto;
 import com.zyfera.entity.ResponseWrapper;
 import com.zyfera.service.StudentService;
 import jakarta.validation.Valid;
+import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +26,9 @@ public class StudentController {
       @Valid @RequestBody StudentCreateDto studentCreateDto) {
 
     StudentDto saved = studentService.save(studentCreateDto);
-    return ResponseEntity.ok(
-        new ResponseWrapper("student is successfully created", saved, HttpStatus.CREATED));
+    return ResponseEntity.of(
+        Optional.of(
+            new ResponseWrapper("student is successfully created", saved, HttpStatus.CREATED)));
   }
 
   @PutMapping("/{stdNumber}")
@@ -34,7 +36,7 @@ public class StudentController {
       @Valid @RequestBody StudentCreateDto studentCreateDto, @PathVariable String stdNumber) {
 
     StudentDto saved = studentService.update(studentCreateDto, stdNumber);
-    return ResponseEntity.ok(
-        new ResponseWrapper("student is successfully updated", saved, HttpStatus.OK));
+    return ResponseEntity.of(
+        Optional.of(new ResponseWrapper("student is successfully updated", saved, HttpStatus.OK)));
   }
 }
