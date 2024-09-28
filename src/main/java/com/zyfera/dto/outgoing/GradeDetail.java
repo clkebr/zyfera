@@ -7,7 +7,7 @@ import lombok.*;
 @Setter
 @Builder
 @AllArgsConstructor
-public class GradeDto {
+public class GradeDetail {
 
   private String code;
 

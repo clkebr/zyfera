@@ -1,7 +1,7 @@
 package com.zyfera.service.impl;
 
-import com.zyfera.dto.incoming.StudentCreateDto;
-import com.zyfera.dto.outgoing.StudentDto;
+import com.zyfera.dto.incoming.StudentCreateForm;
+import com.zyfera.dto.outgoing.StudentDetail;
 import com.zyfera.entity.Grade;
 import com.zyfera.entity.Student;
 import com.zyfera.exception.StudentNotFoundException;
@@ -27,10 +27,10 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
-  public StudentDto save(StudentCreateDto studentCreateDto) {
+  public StudentDetail save(StudentCreateForm studentCreateForm) {
     // check if user already exist
-    if (studentRepository.findByStdNumber(studentCreateDto.getStdNumber()).isEmpty()) {
-      Student studentToBeSaved = mapperUtil.convertToType(studentCreateDto, new Student());
+    if (studentRepository.findByStdNumber(studentCreateForm.getStdNumber()).isEmpty()) {
+      Student studentToBeSaved = mapperUtil.convertToType(studentCreateForm, new Student());
 
       // to check duplicate grade-code create a map to store grade value
       Map<String, Integer> gradeMap = new HashMap<>();
@@ -55,22 +55,22 @@ public class StudentServiceImpl implements StudentService {
       studentToBeSaved.setGrades(grades);
 
       Student saved = studentRepository.save(studentToBeSaved);
-      return mapperUtil.convertToType(saved, new StudentDto());
+      return mapperUtil.convertToType(saved, new StudentDetail());
     } else { // trow custom runtime exception to inform user
       throw new StudentNotFoundException(
-          "Student with number " + studentCreateDto.getStdNumber() + " already exist!");
+          "Student with number " + studentCreateForm.getStdNumber() + " already exist!");
     }
   }
 
   // todo: ask which fields are allowed to be updated. now i updated all
   // todo: what are the requirements, if a value with existing grade-code is updating. now i set average
   @Override
-  public StudentDto update(StudentCreateDto studentCreateDto, String stdNumber) {
+  public StudentDetail update(StudentCreateForm studentCreateForm, String stdNumber) {
 
     // find user by unique value(stdNumber)
     Optional<Student> student = studentRepository.findByStdNumber(stdNumber);
 
-    Student studentToBeSaved = mapperUtil.convertToType(studentCreateDto, new Student());
+    Student studentToBeSaved = mapperUtil.convertToType(studentCreateForm, new Student());
 
     // if user exist update user
     if (student.isPresent()) {
@@ -107,10 +107,10 @@ public class StudentServiceImpl implements StudentService {
       studentToBeSaved.setId(student.get().getId());
 
       Student saved = studentRepository.save(studentToBeSaved);
-      return mapperUtil.convertToType(saved, new StudentDto());
+      return mapperUtil.convertToType(saved, new StudentDetail());
     } else {
       throw new StudentNotFoundException(
-          "Student with number " + studentCreateDto.getStdNumber() + " not found!");
+          "Student with number " + studentCreateForm.getStdNumber() + " not found!");
     }
   }
 }

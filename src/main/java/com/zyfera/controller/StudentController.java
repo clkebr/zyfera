@@ -1,7 +1,7 @@
 package com.zyfera.controller;
 
-import com.zyfera.dto.incoming.StudentCreateDto;
-import com.zyfera.dto.outgoing.StudentDto;
+import com.zyfera.dto.incoming.StudentCreateForm;
+import com.zyfera.dto.outgoing.StudentDetail;
 import com.zyfera.entity.ResponseWrapper;
 import com.zyfera.service.StudentService;
 import jakarta.validation.Valid;
@@ -23,9 +23,9 @@ public class StudentController {
   // used responseWrapper to use same output structure for all endpoints
   @PostMapping()
   public ResponseEntity<ResponseWrapper> createStudent(
-      @Valid @RequestBody StudentCreateDto studentCreateDto) {
+      @Valid @RequestBody StudentCreateForm studentCreateForm) {
 
-    StudentDto saved = studentService.save(studentCreateDto);
+    StudentDetail saved = studentService.save(studentCreateForm);
     return ResponseEntity.of(
         Optional.of(
             new ResponseWrapper("student is successfully created", saved, HttpStatus.CREATED)));
@@ -33,9 +33,9 @@ public class StudentController {
 
   @PutMapping("/{stdNumber}")
   public ResponseEntity<ResponseWrapper> updateStudent(
-      @Valid @RequestBody StudentCreateDto studentCreateDto, @PathVariable String stdNumber) {
+      @Valid @RequestBody StudentCreateForm studentCreateForm, @PathVariable String stdNumber) {
 
-    StudentDto saved = studentService.update(studentCreateDto, stdNumber);
+    StudentDetail saved = studentService.update(studentCreateForm, stdNumber);
     return ResponseEntity.of(
         Optional.of(new ResponseWrapper("student is successfully updated", saved, HttpStatus.OK)));
   }

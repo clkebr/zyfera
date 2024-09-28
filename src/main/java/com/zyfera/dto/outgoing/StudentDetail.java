@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @Builder
 @AllArgsConstructor
-public class StudentDto {
+public class StudentDetail {
 
   private Long id;
 
@@ -18,5 +18,5 @@ public class StudentDto {
 
   private String stdNumber;
 
-  private List<GradeDto> grades;
+  private List<GradeDetail> grades;
 }

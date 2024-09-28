@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @Builder
 @AllArgsConstructor
-public class GradeCreateDto {
+public class GradeCreateForm {
 
   @NotBlank private String code;
 

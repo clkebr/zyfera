@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @Builder
 @AllArgsConstructor
-public class StudentCreateDto {
+public class StudentCreateForm {
 
   @NotBlank private String name;
 
@@ -17,5 +17,5 @@ public class StudentCreateDto {
 
   @NotBlank private String stdNumber;
 
-  private List<GradeCreateDto> grades;
+  private List<GradeCreateForm> grades;
 }
