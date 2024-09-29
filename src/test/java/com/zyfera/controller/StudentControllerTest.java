@@ -6,12 +6,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.zyfera.config.NoJpaAuditingConfig;
 import com.zyfera.dto.incoming.StudentCreateDto;
 import com.zyfera.dto.outgoing.StudentDto;
 import com.zyfera.mapper.MapperUtil;
 import com.zyfera.service.StudentService;
 import com.zyfera.service.impl.TestDocumentInitializer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -19,8 +20,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -29,10 +30,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 // @ContextConfiguration(classes = {StudentController.class, StudentService.class})
 // @RunWith(SpringJUnit4ClassRunner.class)
 @AutoConfigureMockMvc
+@Import(NoJpaAuditingConfig.class)
 @WebMvcTest(StudentController.class)
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest(
-    classes = {StudentController.class, StudentService.class, TestDocumentInitializer.class})
 public class StudentControllerTest {
 
   @InjectMocks private StudentController studentController;
