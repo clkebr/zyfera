@@ -71,7 +71,7 @@ The API will be accessible at `http://localhost:8080`.
 
 ### 1. Create Student
 
-- **URL**: `/api/students/create`
+- **URL**: `/api/students`
 - **Method**: `POST`
 - **Description**: Adds a new student along with their grades. If a course is repeated, the average grade for that
   course is stored.
